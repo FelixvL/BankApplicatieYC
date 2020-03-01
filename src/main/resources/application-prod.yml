@@ -8,4 +8,6 @@ spring:
     username: felixbank
     password: FelixBank1234
     driverClassName: com.mysql.jdbc.Driver
+server:
+  port: 9000
 
