@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/felixbank
+    username: felixbank
+    password: FelixBank1234
+    driverClassName: com.mysql.jdbc.Driver
+
