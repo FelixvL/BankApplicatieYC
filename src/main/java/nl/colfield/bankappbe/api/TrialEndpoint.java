@@ -8,6 +8,6 @@ public class TrialEndpoint {
 
 	@GetMapping("trial")
 	public String returnString() {
-		return "De BankApp is in de Lucht";
+		return "De Bank applicatie is in de Lucht";
 	}
 }
