@@ -8,6 +8,6 @@ public class TrialEndpoint {
 
 	@GetMapping("trial")
 	public String returnString() {
-		return "De Bank applicatie is in de Lucht";
+		return "De BankApp is in de Lucht, met de tweede testcommit";
 	}
 }
