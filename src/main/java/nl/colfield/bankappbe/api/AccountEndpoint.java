@@ -8,6 +8,8 @@ import nl.colfield.bankappbe.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class AccountEndpoint {
 
@@ -38,5 +40,10 @@ public class AccountEndpoint {
     public Account showOneAccount(@PathVariable long id){
         return accountService.findOne(id);
 
+    }
+
+    @GetMapping("acc/displayall/{customerId}")
+    public List <Account> accDisplayAllCustomerId(@PathVariable long customerId){
+        return accountService.getAccountsOfCustomer(customerId);
     }
 }
