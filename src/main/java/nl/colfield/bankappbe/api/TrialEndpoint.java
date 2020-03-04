@@ -1,8 +1,7 @@
 package nl.colfield.bankappbe.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import nl.colfield.bankappbe.controller.CustomerService;
 import nl.colfield.bankappbe.domain.Customer;
@@ -30,4 +29,20 @@ public class TrialEndpoint {
 		customerService.newCustomerFake();
 		return "New customer added";
 	}
+	@PostMapping("customer/new")
+	public String trailPost(@RequestBody Customer customer){
+		System.out.println(customer.getFirstName());
+		customerService.addNewCostumer(customer);
+		return "gelukt";
+	}
+
+	@DeleteMapping("customer/{id}/delete")
+	public String trailDelete(@PathVariable long id){
+		customerService.deleteCostumer(id);
+
+		return "Klant verwijderd";
+
+	}
+
+
 }
