@@ -16,12 +16,12 @@ public class AccountEndpoint {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("acc/toevoegen/{id}")
+    @PostMapping("acc/toevoegen/{id}") // TODO verander naar add/account/to/customerid/{id}
     public void addAccount(@PathVariable long id, @RequestBody Account account){
         accountService.creatAccount(id, account);
     }
 
-	@DeleteMapping("acc/delete/{id}")
+	@DeleteMapping("acc/delete/{id}") //TODO verander naar delete/accountid/{id}
 	public String deleteAccount(@PathVariable long id){
 		accountService.deleteAccount(id);
 		return "Account verwijderd";
@@ -29,21 +29,21 @@ public class AccountEndpoint {
 
     }
 
-    @GetMapping("show/account")
+    @GetMapping("show/account") //TODO veranderen naar display/all/accounts
     public Iterable <Account> showAllAccounts(){
 
         return accountService.getAll();
     }
 
 
-    @GetMapping("acc/info/{id}")
+    @GetMapping("acc/info/{id}") //TODO veranderen naar info/accountid/{id}
     public Account showOneAccount(@PathVariable long id){
         return accountService.findOne(id);
 
     }
 
-    @GetMapping("acc/displayall/{customerId}")
-    public List <Account> accDisplayAllCustomerId(@PathVariable long customerId){
-        return accountService.getAccountsOfCustomer(customerId);
+    @GetMapping("acc/displayall/{Id}") //TODO veranderen naar display/all/accounts/of/customerid/{id}
+    public List <Account> accDisplayAllCustomerId(@PathVariable long Id){
+        return accountService.getAccountsOfCustomer(Id);
     }
 }
