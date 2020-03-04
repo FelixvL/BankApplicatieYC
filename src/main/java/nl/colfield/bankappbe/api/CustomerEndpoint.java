@@ -11,7 +11,7 @@ public class CustomerEndpoint {
 	@Autowired
 	private CustomerService customerService;
 
-	@PostMapping("customer/new")
+	@PostMapping("customer/add")
 	public String trailPost(@RequestBody Customer customer){
 		System.out.println(customer.getFirstName());
 		customerService.addNewCostumer(customer);
@@ -25,13 +25,13 @@ public class CustomerEndpoint {
 
 	}
 
-	@GetMapping("customer/displayAll")
+	@GetMapping("customer/displayall")
 	public Iterable<Customer> getAllCustomers(){
 		return customerService.getAllCustomers();
 
 	}
 
-	@GetMapping("customer/Info/{id}")
+	@GetMapping("customer/info/{id}")
 	public  Customer findOneCustomer(@PathVariable long id){
 		return customerService.findOne(id);
 	}
