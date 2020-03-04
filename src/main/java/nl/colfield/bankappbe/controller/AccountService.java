@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,10 +40,18 @@ public class AccountService {
          }
     }
 
-        /*find customer with id (see findOne methods)
-        /create new account with that customer
-        /save account (add to table)
+    public Account findOne(long id){
+        Optional <Account> account= accountRepository.findById(id);
+            return account.get();
+        }
 
-        */
+    public void showAllBalance(){
+        System.out.println(accountRepository.findByBalance(1000));
+    }
+
+    public List<Account> getAccountsOfCustomer(long id){
+        return accountRepository.findByOwnerId(id);
+    }
+
 
 }
