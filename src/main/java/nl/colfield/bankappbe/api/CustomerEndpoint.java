@@ -31,7 +31,7 @@ public class CustomerEndpoint {
 		return "gelukt";
 	}
 
-	@DeleteMapping("customer/{id}/delete")
+	@DeleteMapping("customer/delete/{id}")
 	public String trailDelete(@PathVariable long id){
 		customerService.deleteCostumer(id);
 
