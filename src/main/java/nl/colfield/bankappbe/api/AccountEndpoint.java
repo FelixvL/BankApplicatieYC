@@ -24,19 +24,19 @@ public class AccountEndpoint {
 		accountService.deleteAccount(id);
 		return "Account verwijderd";
 
-	}
-    
+
+    }
+
     @GetMapping("show/account")
     public Iterable <Account> showAllAccounts(){
+
         return accountService.getAll();
     }
 
 
+    @GetMapping("acc/info/{id}")
+    public Account showOneAccount(@PathVariable long id){
+        return accountService.findOne(id);
 
-
-
-
+    }
 }
-//    Acc toevoegen:
-//        http://173.212.208.199:9000/acc/toevoegen/{IDKlant}
-//        Geeft Json object mee met Acc eigenschappen ingevoerd in het formulier op de pagina.

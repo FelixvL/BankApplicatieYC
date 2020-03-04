@@ -39,10 +39,10 @@ public class AccountService {
          }
     }
 
-        /*find customer with id (see findOne methods)
-        /create new account with that customer
-        /save account (add to table)
+    public Account findOne(long id){
+        Optional <Account> account= accountRepository.findById(id);
+            return account.get();
+        }
 
-        */
 
 }
