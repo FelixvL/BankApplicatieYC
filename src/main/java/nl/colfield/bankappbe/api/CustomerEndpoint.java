@@ -12,14 +12,14 @@ public class CustomerEndpoint {
 	private CustomerService customerService;
 
 	@PostMapping("customer/add")
-	public String trailPost(@RequestBody Customer customer){
+	public String addCustomer(@RequestBody Customer customer){
 		System.out.println(customer.getFirstName());
 		customerService.addNewCostumer(customer);
 		return "gelukt";
 	}
 
 	@DeleteMapping("customer/delete/{id}")
-	public String trailDelete(@PathVariable long id){
+	public String deleteCustomer(@PathVariable long id){
 		customerService.deleteCostumer(id);
 		return "Klant verwijderd";
 
