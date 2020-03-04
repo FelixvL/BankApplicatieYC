@@ -31,7 +31,13 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-
+    public void deleteAccount(long id) {
+    	 Optional <Account> Optionalaccount= accountRepository.findById(id);
+         if (Optionalaccount.isPresent()){
+             Account account = Optionalaccount.get();
+             accountRepository.delete(account);
+         }
+    }
 
         /*find customer with id (see findOne methods)
         /create new account with that customer

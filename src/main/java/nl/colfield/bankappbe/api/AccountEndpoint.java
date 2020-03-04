@@ -19,6 +19,13 @@ public class AccountEndpoint {
         accountService.creatAccount(id, account);
     }
 
+	@DeleteMapping("acc/delete/{id}")
+	public String deleteAccount(@PathVariable long id){
+		accountService.deleteAccount(id);
+		return "Account verwijderd";
+
+	}
+    
     @GetMapping("show/account")
     public Iterable <Account> showAllAccounts(){
         return accountService.getAll();
