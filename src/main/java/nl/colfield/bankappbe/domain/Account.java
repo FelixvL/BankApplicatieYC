@@ -10,6 +10,16 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String IBAN;
+
+	public AccountType getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
+	}
+
+	private  AccountType accountType;
 	private enum AccountType{
 		DEBITACCOUNT,
 		SAVINGSACCOUNT,

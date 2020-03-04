@@ -16,34 +16,35 @@ public class AccountEndpoint {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("acc/toevoegen/{id}")
-    public void addAccount(@PathVariable long id, @RequestBody Account account){
+    @PostMapping("add/account/to/customerid/{id}")
+    public String addAccount(@PathVariable long id, @RequestBody Account account){
         accountService.creatAccount(id, account);
+        return  "Account toegevoegd aan Klant";
     }
 
-	@DeleteMapping("acc/delete/{id}")
+	@DeleteMapping("delete/accountid/{id}")
 	public String deleteAccount(@PathVariable long id){
 		accountService.deleteAccount(id);
-		return "Account verwijderd";
+		return "Account verwijderd van Klant " + id;
 
 
     }
 
-    @GetMapping("show/account")
+    @GetMapping("display/all/accounts")
     public Iterable <Account> showAllAccounts(){
 
         return accountService.getAll();
     }
 
 
-    @GetMapping("acc/info/{id}")
+    @GetMapping("info/accountid/{id}")
     public Account showOneAccount(@PathVariable long id){
         return accountService.findOne(id);
 
     }
 
-    @GetMapping("acc/displayall/{customerId}")
-    public List <Account> accDisplayAllCustomerId(@PathVariable long customerId){
-        return accountService.getAccountsOfCustomer(customerId);
+    @GetMapping("display/all/accounts/of/customerid/{id}")
+    public List <Account> accDisplayAllCustomerId(@PathVariable long Id){
+        return accountService.getAccountsOfCustomer(Id);
     }
 }
