@@ -1,10 +1,13 @@
 package nl.colfield.bankappbe.controller;
 
+import org.omg.CORBA.CustomMarshal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import nl.colfield.bankappbe.domain.Customer;
+
+import java.util.Optional;
 
 
 @Service
@@ -22,4 +25,27 @@ public class CustomerService {
 		c.setLastName("De Gooij");
 		customerRepository.save(c);
 	}
+
+	public void addNewCostumer(Customer customer){
+		customerRepository.save(customer);
+	}
+
+	public Customer findOne(Long id){
+		Optional<Customer> customer = customerRepository.findById(id);
+			return customer.get();
+		}
+
+	public  String deleteCostumer(Long id){
+		Customer customer = findOne(id);
+		if (customer== null){
+			return "klant niet gevonden";
+		}
+		else{
+			customerRepository.delete(customer);
+			return customer.getFirstName();
+		}
+
+
+	}
+
 }
