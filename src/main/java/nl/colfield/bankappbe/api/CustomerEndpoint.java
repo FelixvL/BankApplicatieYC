@@ -42,7 +42,12 @@ public class CustomerEndpoint {
 	@GetMapping("customer/displayAll")
 	public Iterable<Customer> getAllCustomers(){
 		return customerService.getAllCustomers();
+
 	}
 
+	@GetMapping("customer/Info/{id}")
+	public  Customer findOneCustomer(@PathVariable long id){
+		return customerService.findOne(id);
+	}
 
 }
