@@ -8,6 +8,8 @@ import nl.colfield.bankappbe.domain.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TransactionEndpoint {
 	
@@ -26,5 +28,10 @@ public class TransactionEndpoint {
 	public Iterable<Transaction> getAllCustomers(){
 		return transactionService.getAllTransactions();
 
+	}
+
+	@GetMapping("display/transactions/accountid/{id}")
+	public List<Transaction> getTransactionAccount(@PathVariable long id){
+		return transactionService.getTransactions(id);
 	}
 }
