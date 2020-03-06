@@ -11,7 +11,9 @@ import java.util.List;
 @Component
 public interface CustomerRepository extends CrudRepository<Customer,Long>{
 
-    List<Customer> findByFirstNameLikeOrLastNameLike (String firstname, String lastname);
+    List<Customer> findByFirstNameLike (String name);
+
+    List<Customer> findByLastNameLike (String name);
 
 }
 

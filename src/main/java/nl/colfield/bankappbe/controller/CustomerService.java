@@ -40,7 +40,11 @@ public class CustomerService {
     }
 
 		public List <Customer> findByName(String name){
-            return customerRepository.findByFirstNameLikeOrLastNameLike(name, name);
+			List <Customer> results;
+			List <Customer> firstName = customerRepository.findByFirstNameLike(name);
+			List <Customer> lastName = customerRepository.findByLastNameLike(name);
+			firstName.addAll(lastName);
+			return firstName;
         }
 
 

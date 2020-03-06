@@ -37,6 +37,8 @@ public class CustomerEndpoint {
 	public  Customer findOneCustomer(@PathVariable long id){
 		return customerService.findOne(id);
 	}
+
+
 	@GetMapping("search/customer/{name}")
 	public List<Customer> searchName(@PathVariable String name){
 		return customerService.findByName(name);
