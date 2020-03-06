@@ -1,5 +1,6 @@
 package nl.colfield.bankappbe.controller;
 
+import nl.colfield.bankappbe.domain.Account;
 import nl.colfield.bankappbe.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ import java.util.Optional;
 public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
+
+	@Autowired
+	private AccountRepository accountRepository;
 	
 	public Iterable<Customer> getAllCustomers(){
 		return customerRepository.findAll();
@@ -32,15 +36,18 @@ public class CustomerService {
         Customer customer = findOne(id);
         if (customer == null) {
             return "klant niet gevonden";
-        } else {
-            customerRepository.delete(customer);
-            return customer.getFirstName();
+        }
+        else if(accountRepository.findByOwnerId(id).isEmpty()){
+			customerRepository.delete(customer);
+			return customer.getFirstName();
+		}
+
+        else { return "klant heeft nog accounts! Verwijder deze eerst";
         }
 
     }
 
 		public List <Customer> findByName(String name){
-			List <Customer> results;
 			List <Customer> firstName = customerRepository.findByFirstNameLike(name);
 			List <Customer> lastName = customerRepository.findByLastNameLike(name);
 			firstName.addAll(lastName);
