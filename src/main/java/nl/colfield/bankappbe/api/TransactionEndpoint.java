@@ -19,8 +19,8 @@ public class TransactionEndpoint {
 	@PostMapping("do/transaction/accountid/{id}")
 	public String addCustomer(@RequestBody Transaction transaction, @PathVariable long id){
 		System.out.println("dotransaction");
-		transactionService.newTransaction(transaction, id);
-		return "gelukt";
+		return transactionService.newTransaction(transaction, id);
+
 	}
 
 
