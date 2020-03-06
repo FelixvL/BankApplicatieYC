@@ -52,6 +52,4 @@ public class AccountService {
     public List<Account> getAccountsOfCustomer(long id){
         return accountRepository.findByOwnerId(id);
     }
-
-
 }
