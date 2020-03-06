@@ -44,7 +44,7 @@ public class AccountEndpoint {
     }
 
     @GetMapping("display/all/accounts/of/customerid/{id}")
-    public List <Account> accDisplayAllCustomerId(@PathVariable long Id){
-        return accountService.getAccountsOfCustomer(Id);
+    public List <Account> accDisplayAllCustomerId(@PathVariable long id){
+        return accountService.getAccountsOfCustomer(id);
     }
 }
