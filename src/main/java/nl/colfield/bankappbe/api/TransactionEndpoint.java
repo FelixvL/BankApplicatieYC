@@ -14,14 +14,15 @@ public class TransactionEndpoint {
 	@Autowired
 	private TransactionService transactionService;
 
-	@PostMapping("transaction/add")
-	public String addCustomer(@RequestBody Transaction transaction){
-		transactionService.newTransaction(transaction);
+	@PostMapping("do/transaction/accountid/{id}")
+	public String addCustomer(@RequestBody Transaction transaction, @PathVariable long id){
+		System.out.println("dotransaction");
+		transactionService.newTransaction(transaction, id);
 		return "gelukt";
 	}
 
 
-	@GetMapping("transaction/displayall")
+	@GetMapping("display/all/transactions")
 	public Iterable<Transaction> getAllCustomers(){
 		return transactionService.getAllTransactions();
 
