@@ -22,10 +22,25 @@ public class TransactionService {
 		return transactionRepository.findAll();
 	}
 
-	public void newTransaction(Transaction transaction, long id) {
+	public String newTransaction(Transaction transaction, long id) {
 		Account temp = accountRepository.findById(id).get();
 		transaction.setAccount(temp);
-		transactionRepository.save(transaction);
+
+		if (transaction.isIncoming()) {
+			int newBalance = temp.getBalance() + transaction.getAmount();
+			transactionRepository.save(transaction);
+			temp.setBalance(newBalance);
+			return "Er is " + transaction.getAmount() + "euro bijgeschreven";
+		}
+		else {
+			int newBalance = temp.getBalance() - transaction.getAmount();
+			if (newBalance > 0) {
+				transactionRepository.save(transaction);
+				temp.setBalance(newBalance);
+				return "Er is " + transaction.getAmount() + "euro afgescreven";
+			}
+			return "Je hebt niet genoeg geld voor deze transactie.";
+		}
 	}
 
 	public List <Transaction> getTransactions(long id){
