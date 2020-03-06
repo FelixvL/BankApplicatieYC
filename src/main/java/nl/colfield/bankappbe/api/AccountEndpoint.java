@@ -22,7 +22,7 @@ public class AccountEndpoint {
 	@DeleteMapping("delete/accountid/{id}")
 	public String deleteAccount(@PathVariable long id){
 		accountService.deleteAccount(id);
-		return "Account verwijderd van Klant " + id;
+		return "Account verwijderd van de klant met account nummer " + id;
 
     }
 

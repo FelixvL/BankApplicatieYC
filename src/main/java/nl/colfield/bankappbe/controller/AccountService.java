@@ -3,6 +3,7 @@ package nl.colfield.bankappbe.controller;
 
 import nl.colfield.bankappbe.domain.Account;
 import nl.colfield.bankappbe.domain.Customer;
+import nl.colfield.bankappbe.domain.Transaction;
 import nl.colfield.bankappbe.helpers.AccountHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AccountService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     public void creatAccount(long id , Account account){
         Optional <Customer> Optionalcustomer= customerRepository.findById(id);
@@ -54,7 +58,17 @@ public class AccountService {
     	 Optional <Account> Optionalaccount= accountRepository.findById(id);
          if (Optionalaccount.isPresent()){
              Account account = Optionalaccount.get();
+             if (!transactionRepository.findByAccountId(id).isEmpty()) {
+                 List<Transaction> transactionList = transactionRepository.findByAccountId(id);
+                 for (Transaction transaction : transactionList
+                 ) {
+                     transactionRepository.delete(transaction);
+                 }
+
+             }
              accountRepository.delete(account);
+
+
          }
     }
 
