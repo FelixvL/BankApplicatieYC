@@ -12,5 +12,7 @@ public interface AccountRepository extends CrudRepository<Account,Long> {
     List<Account> findByBalance (int balance);
 
     List<Account> findByOwnerId (long id);
+    
+    List<Account> findByIBAN(String iban);
 
 }

@@ -24,7 +24,6 @@ public class AccountEndpoint {
 		accountService.deleteAccount(id);
 		return "Account verwijderd van Klant " + id;
 
-
     }
 
     @GetMapping("display/all/accounts")
@@ -44,9 +43,19 @@ public class AccountEndpoint {
         return accountService.getAccountsOfCustomer(id);
     }
 
+    
+    @GetMapping("proberen")//this endpoint is for testing, obsolite , can be removed
+    public String llll(){
+    	//accountService.proberenInService();
+    	accountService.creatAccount(1 , new Account());
+    	return "het werkt";
+    }
+
+
 
     @GetMapping("login/accountid/{id}")
     public void loginIntoAccount(@PathVariable long id){
         accountService.updateOpenDate(id);
+
     }
 }
