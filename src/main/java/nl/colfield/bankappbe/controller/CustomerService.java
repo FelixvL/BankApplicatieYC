@@ -39,10 +39,11 @@ public class CustomerService {
         }
         else if(accountRepository.findByOwnerId(id).isEmpty()){
 			customerRepository.delete(customer);
-			return customer.getFirstName();
+			return customer.getFirstName() +" "+ customer.getLastName() + " is verwijderd!";
+
 		}
 
-        else { return "klant heeft nog accounts! Verwijder deze eerst";
+        else { return "klant heeft nog accounts! Verwijder deze eerst!";
         }
 
     }
