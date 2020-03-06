@@ -8,6 +8,8 @@ import nl.colfield.bankappbe.domain.Account;
 import nl.colfield.bankappbe.domain.Customer;
 import nl.colfield.bankappbe.domain.Transaction;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class TransactionService {
@@ -19,10 +21,16 @@ public class TransactionService {
 	public Iterable<Transaction> getAllTransactions(){
 		return transactionRepository.findAll();
 	}
+
 	public void newTransaction(Transaction transaction, long id) {
 		Account temp = accountRepository.findById(id).get();
 		transaction.setAccount(temp);
 		transactionRepository.save(transaction);
+	}
+
+	public List <Transaction> getTransactions(long id){
+		return transactionRepository.findByAccountId(id);
+
 	}
 
 }
