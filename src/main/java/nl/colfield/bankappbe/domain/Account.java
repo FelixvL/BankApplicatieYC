@@ -4,12 +4,21 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+import nl.colfield.bankappbe.helpers.AccountHelper;
+
+
 @Entity
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String IBAN;
+	
+	public Account() {
+		super();
+		AccountHelper accountHelper = new AccountHelper();
+		IBAN = accountHelper.createIBAN();
+	}
 
 	public AccountType getAccountType() {
 		return accountType;
@@ -25,7 +34,7 @@ public class Account {
 		SAVINGSACCOUNT,
 		CREDITCARD		
 	};
-
+	
 
 	@ManyToOne
 	private Customer owner;
