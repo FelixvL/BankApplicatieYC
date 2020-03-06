@@ -60,5 +60,5 @@ public class AccountService {
         Optional <Account> optionalAccount= accountRepository.findById(id);
         Account account = optionalAccount.get();
         account.setDateOpened(LocalDateTime.now());
-    } 
+    }
 }

@@ -22,8 +22,7 @@ public class CustomerEndpoint {
 
 	@DeleteMapping("delete/customerid/{id}")
 	public String deleteCustomer(@PathVariable long id){
-		customerService.deleteCostumer(id);
-		return "Klant verwijderd";
+		return customerService.deleteCostumer(id);
 
 	}
 
