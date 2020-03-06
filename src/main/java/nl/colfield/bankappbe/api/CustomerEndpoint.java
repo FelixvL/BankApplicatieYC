@@ -5,6 +5,8 @@ import nl.colfield.bankappbe.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CustomerEndpoint {
 	
@@ -32,9 +34,16 @@ public class CustomerEndpoint {
 	}
 
 	@GetMapping("info/customerid/{id}")
-	public  Customer findOneCustomer(@PathVariable long id)
-	{
+	public  Customer findOneCustomer(@PathVariable long id){
 		return customerService.findOne(id);
+	}
+
+
+	@GetMapping("search/customer/{name}")
+	public List<Customer> searchName(@PathVariable String name){
+		return customerService.findByName(name);
+
+
 	}
 
 }

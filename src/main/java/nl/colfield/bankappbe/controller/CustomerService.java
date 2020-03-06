@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,12 +18,6 @@ public class CustomerService {
 	public Iterable<Customer> getAllCustomers(){
 		return customerRepository.findAll();
 	}
-	public void newCustomerFake() {
-		Customer c = new Customer();
-		c.setFirstName("Johan");
-		c.setLastName("De Gooij");
-		customerRepository.save(c);
-	}
 
 	public void addNewCostumer(Customer customer){
 		customerRepository.save(customer);
@@ -33,17 +28,24 @@ public class CustomerService {
 			return customer.get();
 		}
 
-	public  String deleteCostumer(Long id){
-		Customer customer = findOne(id);
-		if (customer== null){
-			return "klant niet gevonden";
-		}
-		else{
-			customerRepository.delete(customer);
-			return customer.getFirstName();
-		}
+	public  String deleteCostumer(Long id) {
+        Customer customer = findOne(id);
+        if (customer == null) {
+            return "klant niet gevonden";
+        } else {
+            customerRepository.delete(customer);
+            return customer.getFirstName();
+        }
 
+    }
 
-	}
+		public List <Customer> findByName(String name){
+			List <Customer> results;
+			List <Customer> firstName = customerRepository.findByFirstNameLike(name);
+			List <Customer> lastName = customerRepository.findByLastNameLike(name);
+			firstName.addAll(lastName);
+			return firstName;
+        }
+
 
 }
