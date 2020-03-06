@@ -27,7 +27,6 @@ public class AccountEndpoint {
 		accountService.deleteAccount(id);
 		return "Account verwijderd van Klant " + id;
 
-
     }
 
     @GetMapping("display/all/accounts")
@@ -46,5 +45,12 @@ public class AccountEndpoint {
     @GetMapping("display/all/accounts/of/customerid/{id}")
     public List <Account> accDisplayAllCustomerId(@PathVariable long id){
         return accountService.getAccountsOfCustomer(id);
+    }
+    
+    @GetMapping("proberen")//this endpoint is for testing, obsolite , can be removed
+    public String llll(){
+    	//accountService.proberenInService();
+    	accountService.creatAccount(1 , new Account());
+    	return "het werkt";
     }
 }
