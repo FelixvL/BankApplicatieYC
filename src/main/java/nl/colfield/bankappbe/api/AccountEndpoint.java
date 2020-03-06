@@ -1,10 +1,7 @@
 package nl.colfield.bankappbe.api;
 
-import nl.colfield.bankappbe.controller.AccountRepository;
 import nl.colfield.bankappbe.controller.AccountService;
-import nl.colfield.bankappbe.controller.CustomerService;
 import nl.colfield.bankappbe.domain.Account;
-import nl.colfield.bankappbe.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,18 +36,26 @@ public class AccountEndpoint {
     @GetMapping("info/accountid/{id}")
     public Account showOneAccount(@PathVariable long id){
         return accountService.findOne(id);
-
     }
 
     @GetMapping("display/all/accounts/of/customerid/{id}")
     public List <Account> accDisplayAllCustomerId(@PathVariable long id){
         return accountService.getAccountsOfCustomer(id);
     }
+
     
     @GetMapping("proberen")//this endpoint is for testing, obsolite , can be removed
     public String llll(){
     	//accountService.proberenInService();
     	accountService.creatAccount(1 , new Account());
     	return "het werkt";
+    }
+
+
+
+    @GetMapping("login/accountid/{id}")
+    public void loginIntoAccount(@PathVariable long id){
+        accountService.updateOpenDate(id);
+
     }
 }
